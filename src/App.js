@@ -1,7 +1,5 @@
 import SearchAutocomplete from "./components/SearchAutocomplete/SearchAutocomplete";
-import List from "./components/List/List";
 import Map from "./components/Map/Map";
-import PlaceDetails from "./components/PlaceDetails/PlaceDetails";
 import { CssBaseline } from "@mui/material";
 
 function App() {
