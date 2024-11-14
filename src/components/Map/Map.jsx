@@ -1,8 +1,21 @@
 import React from "react";
-import GoogleMapReact from 'google-map-react';
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import "leaflet/dist/leaflet.css";
 import SearchAutocomplete from "../SearchAutocomplete/SearchAutocomplete";
+import L from "leaflet";
 
-const AnyReactComponent = ({ text }) => <div>{text}</div>;
+import markerIcon from "leaflet/dist/images/marker-icon.png";
+import markerShadow from "leaflet/dist/images/marker-shadow.png";
+
+const DefaultIcon = L.icon({
+  iconUrl: markerIcon,
+  shadowUrl: markerShadow,
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowSize: [41, 41],
+});
+L.Marker.prototype.options.icon = DefaultIcon;
 
 export default function Map({ center }) {
   const defaultProps = {
@@ -10,23 +23,25 @@ export default function Map({ center }) {
       lat: 33.4255,
       lng: -111.9400,
     },
-    zoom: 2,
+    zoom: 3,
   };
 
   return (
     <div style={{ height: '100vh', width: '100%', position: 'relative' }}>
       <SearchAutocomplete />
-      <GoogleMapReact
-        bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_MAPS_API_KEY }} 
-        center={center || defaultProps.center} 
-        defaultZoom={defaultProps.zoom}
+      <MapContainer
+        center={center || defaultProps.center}
+        zoom={defaultProps.zoom}
+        style={{ height: "100%", width: "100%" }}
       >
-        <AnyReactComponent
-          lat={center ? center.lat : defaultProps.center.lat} 
-          lng={center ? center.lng : defaultProps.center.lng} 
-          text="My Marker"
+        <TileLayer
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         />
-      </GoogleMapReact>
+        <Marker position={center || defaultProps.center}>
+          <Popup>You are here</Popup>
+        </Marker>
+      </MapContainer>
     </div>
   );
 }
