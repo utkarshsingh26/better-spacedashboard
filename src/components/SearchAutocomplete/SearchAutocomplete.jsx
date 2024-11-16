@@ -77,7 +77,7 @@ export default function SearchAutocomplete({ onPlaceSelected }) {
       const formattedEndDate = endDate.toISOString().split('T')[0];
       try {
         const results = await searchArticles(selectedKeyword, formattedStartDate, formattedEndDate);
-        //console.log('API search results:', results);
+        console.log('API search results:', results);
       } catch (error) {
         console.error('Failed to fetch search results:', error);
       }
