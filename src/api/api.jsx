@@ -1,10 +1,10 @@
 import axios from 'axios';
 
 const searchArticles = async (keyword, startDate, endDate) => {
-  const url = "https://search-space-heatmap-opensearch-7qgyjfwufwegs2dwy2tej2fnbi.us-east-2.es.amazonaws.com/your_index_name/_search";
+  const url = "https://search-spacedashboard-iwe73t55mdgtfo2blpobt76e6i.us-east-2.es.amazonaws.com/your_index_name/_search";
   const auth = {
     username: "svl@asu",
-    password: "Svl@asu2024"
+    password: "Devils@2024"
   };
 
   const query = {
